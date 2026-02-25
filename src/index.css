@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #4b0082, #2e003e);
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 50px;
+  max-width: 400px;
+  margin: auto;
+}
+
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: gold;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
