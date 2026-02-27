@@ -1,6 +1,7 @@
+// DivineMercy.jsx
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import divineImage from "./assets/divinemercy.jpeg"; // add image to assets folder
+import divineImage from "./assets/divinemercy.jpeg"; // make sure image is in assets
 import "./App.css";
 
 function DivineMercy() {
@@ -12,16 +13,18 @@ function DivineMercy() {
       exit={{ opacity: 0, y: -40 }}
       transition={{ duration: 0.6 }}
     >
-      {/* Image */}
+      {/* Divine Mercy Image */}
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <img
           src={divineImage}
           alt="Divine Mercy"
-          className="divine-image"
+          className="divinemercy" // updated class
         />
       </div>
 
-      <h1 style={{ textAlign: "center" }}>Divine Mercy Chaplet</h1>
+      <h1 style={{ textAlign: "center", color: "#8b0000", fontFamily: "Georgia, serif", marginBottom: "1rem" }}>
+        Divine Mercy Chaplet
+      </h1>
 
       <h3>Sign of the Cross ✝️</h3>
 

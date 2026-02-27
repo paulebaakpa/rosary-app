@@ -1,14 +1,10 @@
+// src/App.jsx
 import { useState, useEffect } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import "./App.css";
 import headerImage from "./assets/virgin-mary.jpeg";
 import DivineMercy from "./DivineMercy";
-import { AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
-
-
-
-/* ================= HOME PAGE (Your Current App) ================= */
 
 function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -62,22 +58,13 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
+    document.body.classList.toggle("dark-mode", darkMode);
   }, [darkMode]);
 
   const handleBeadClick = (index) => setCurrentBead(index + 1);
   const resetBeads = () => setCurrentBead(0);
-
-  const toggleAccordion = (key) => {
-    setExpanded((prev) => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
-  };
+  const toggleAccordion = (key) =>
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
     <>
@@ -92,11 +79,9 @@ function Home() {
       </header>
 
       <div className="container">
-
-        {/* 🔥 NEW Divine Mercy Button */}
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
           <Link to="/divine-mercy">
-            <button>Divine Mercy Chaplet</button>
+            <button className="nav-button">Divine Mercy Chaplet</button>
           </Link>
         </div>
 
@@ -112,10 +97,9 @@ function Home() {
               key={index}
               className={`bead ${index < currentBead ? "active" : ""}`}
               onClick={() => handleBeadClick(index)}
-            ></div>
+            />
           ))}
         </div>
-
         <div style={{ textAlign: "center" }}>
           <button onClick={resetBeads}>Reset</button>
         </div>
@@ -154,8 +138,9 @@ function Home() {
             type="checkbox"
             checked={darkMode}
             onChange={() => setDarkMode(!darkMode)}
+            id="darkModeToggle"
           />
-          <label>🌙 Dark Mode</label>
+          <label htmlFor="darkModeToggle">🌙 Dark Mode</label>
         </div>
       </div>
 
@@ -166,14 +151,16 @@ function Home() {
   );
 }
 
-/* ================= ROUTER ================= */
-
 function App() {
+  const location = useLocation();
+
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/divine-mercy" element={<DivineMercy />} />
-    </Routes>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/divine-mercy" element={<DivineMercy />} />
+      </Routes>
+    </AnimatePresence>
   );
 }
 

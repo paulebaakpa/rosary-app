@@ -78,7 +78,7 @@ header p {
   color: #666;
 }
 
-/* Circular Image */
+/* Circular Header Image */
 .header-avatar {
   width: 160px;
   height: 160px;
@@ -111,7 +111,6 @@ header p {
 }
 
 /* Section Titles */
-
 h2 {
   font-family: 'Georgia', serif;
   font-size: 1.6rem;
@@ -211,6 +210,38 @@ button:hover {
 }
 
 /* =========================================
+   ACCORDION
+========================================= */
+
+.accordion-item {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+
+.accordion-header {
+  background: #ffeaea;
+  color: #8b0000;
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.accordion-header:hover {
+  background: #ffd6d6;
+}
+
+.accordion-body {
+  background: #fff0f0;
+  padding: 0.5rem 1rem;
+}
+
+/* =========================================
    FOOTER
 ========================================= */
 
@@ -222,6 +253,25 @@ footer {
   color: #8b0000;
   font-size: 0.9rem;
   border-top: 2px solid #eee;
+}
+
+/* =========================================
+   DIVINE MERCY IMAGE
+========================================= */
+
+.divinemercy {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 1rem auto;
+}
+
+.divinemercy:hover {
+  transform: scale(1.05);
 }
 
 /* =========================================
@@ -256,30 +306,39 @@ body.dark-mode button {
   color: #1c1c1c;
 }
 
-body.dark-mode .header-img {
-  filter: brightness(75%) contrast(110%);
+body.dark-mode .accordion-header {
+  background: #444;
+  color: #ff6666;
 }
 
-body.dark-mode .header {
-  background: linear-gradient(135deg, #2a2a2a, #1c1c1c);
+body.dark-mode .accordion-body {
+  background: #333;
 }
 
 body.dark-mode .header-avatar {
   border: 4px solid #333;
 }
+
 /* =========================================
    📱 RESPONSIVE
 ========================================= */
 
-@media (max-width: 600px) {
-
-  header h1 {
-    font-size: 1.7rem;
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .header-img {
-    height: 230px;
-    border-radius: 0 0 20px 20px;
+  .header-avatar {
+    margin: 1rem 0 0;
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.7rem;
   }
 
   h2 {
@@ -299,67 +358,4 @@ body.dark-mode .header-avatar {
     width: 32px;
     height: 32px;
   }
-}
-
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .header-avatar {
-    margin: 1rem 0 0;
-    width: 130px;
-    height: 130px;
-  }
-}
-
-.accordion-item {
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #ddd;
-  transition: all 0.3s ease;
-}
-
-.accordion-header {
-  background: #ffeaea;
-  color: #8b0000;
-  padding: 0.6rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.accordion-header:hover {
-  background: #ffd6d6;
-}
-
-.accordion-body {
-  background: #fff0f0;
-  padding: 0.5rem 1rem;
-}
-
-body.dark-mode .accordion-header {
-  background: #444;
-  color: #ff6666;
-}
-
-body.dark-mode .accordion-body {
-  background: #333;
-}
-
-.divinemercy {
-    width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  transition: transform 0.3s ease;
-}
-
-.divinemercy:hover {
-  transform: scale(1.05);
 }
