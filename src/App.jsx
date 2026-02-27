@@ -1,151 +1,179 @@
-import { useState } from "react";
-import topImage from "./assets/virgin-mary.jpeg";
+import { useState, useEffect } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
+import headerImage from "./assets/virgin-mary.jpeg";
+import DivineMercy from "./DivineMercy";
+import { AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
-/* Prayer data for each mystery */
-const prayers = {
-  Joyful: [
-    "The Annunciation: Hail Mary...",
-    "The Visitation: Hail Mary...",
-    "The Nativity: Hail Mary...",
-    "The Presentation: Hail Mary...",
-    "The Finding of Jesus in the Temple: Hail Mary..."
-  ],
-  Sorrowful: [
-    "The Agony in the Garden: Hail Mary...",
-    "The Scourging at the Pillar: Hail Mary...",
-    "The Crowning with Thorns: Hail Mary...",
-    "The Carrying of the Cross: Hail Mary...",
-    "The Crucifixion: Hail Mary..."
-  ],
-  Glorious: [
-    "The Resurrection: Hail Mary...",
-    "The Ascension: Hail Mary...",
-    "The Descent of the Holy Spirit: Hail Mary...",
-    "The Assumption of Mary: Hail Mary...",
-    "The Coronation of Mary: Hail Mary..."
-  ],
-  Luminous: [
-    "The Baptism of Jesus: Hail Mary...",
-    "The Wedding at Cana: Hail Mary...",
-    "The Proclamation of the Kingdom: Hail Mary...",
-    "The Transfiguration: Hail Mary...",
-    "The Institution of the Eucharist: Hail Mary..."
-  ]
-};
 
-function App() {
-  const [section, setSection] = useState("rosary");
-  const [count, setCount] = useState(0);
-  const [decade, setDecade] = useState(1);
-  const [mystery, setMystery] = useState("Joyful");
 
-  const handlePray = () => {
-    if (decade === 5 && count === 9) return;
+/* ================= HOME PAGE (Your Current App) ================= */
 
-    if (count < 9) {
-      setCount(prev => prev + 1);
+function Home() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [currentBead, setCurrentBead] = useState(0);
+  const [mystery, setMystery] = useState("");
+  const [expanded, setExpanded] = useState({});
+
+  const allMysteries = {
+    Joyful: [
+      "The Annunciation",
+      "The Visitation",
+      "The Nativity",
+      "The Presentation",
+      "The Finding in the Temple"
+    ],
+    Sorrowful: [
+      "The Agony in the Garden",
+      "The Scourging at the Pillar",
+      "The Crowning with Thorns",
+      "The Carrying of the Cross",
+      "The Crucifixion"
+    ],
+    Glorious: [
+      "The Resurrection",
+      "The Ascension",
+      "The Descent of the Holy Spirit",
+      "The Assumption",
+      "The Coronation of Mary"
+    ],
+    Luminous: [
+      "The Baptism of Jesus",
+      "The Wedding at Cana",
+      "The Proclamation of the Kingdom",
+      "The Transfiguration",
+      "The Institution of the Eucharist"
+    ]
+  };
+
+  useEffect(() => {
+    const today = new Date().getDay();
+    const weekdayMysteries = {
+      0: "Glorious",
+      1: "Joyful",
+      2: "Sorrowful",
+      3: "Glorious",
+      4: "Luminous",
+      5: "Sorrowful",
+      6: "Joyful"
+    };
+    setMystery(weekdayMysteries[today]);
+  }, []);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
     } else {
-      setCount(0);
-      setDecade(prev => prev + 1);
+      document.body.classList.remove("dark-mode");
     }
-  };
+  }, [darkMode]);
 
-  const handleReset = () => {
-    setCount(0);
-    setDecade(1);
-  };
+  const handleBeadClick = (index) => setCurrentBead(index + 1);
+  const resetBeads = () => setCurrentBead(0);
 
-  const totalBeads = 50;
-  const currentBead = (decade - 1) * 10 + (count + 1);
-  const progressPercent = Math.min(
-    Math.round((currentBead / totalBeads) * 100),
-    100
-  );
+  const toggleAccordion = (key) => {
+    setExpanded((prev) => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
 
   return (
-    <div className="container">
-      <img src={topImage} alt="Rosary Banner" className="top-image" />
+    <>
+      <header className="header">
+        <div className="header-content">
+          <div className="header-text">
+            <h1>Holy Rosary App</h1>
+            <p>Pray. Reflect. Grow closer to God.</p>
+          </div>
+          <img src={headerImage} alt="Virgin Mary" className="header-avatar" />
+        </div>
+      </header>
 
-      <h1>Rosary Prayer App 🙏🏽</h1>
+      <div className="container">
 
-      {/* Navigation */}
-      <div className="nav-buttons">
-        <button onClick={() => setSection("rosary")}>Rosary</button>
-        <button onClick={() => setSection("daily")}>Daily Prayers</button>
-        <button onClick={() => setSection("mercy")}>Divine Mercy</button>
-        <button onClick={() => setSection("bible")}>Bible</button>
+        {/* 🔥 NEW Divine Mercy Button */}
+        <div style={{ textAlign: "center", marginBottom: "20px" }}>
+          <Link to="/divine-mercy">
+            <button>Divine Mercy Chaplet</button>
+          </Link>
+        </div>
+
+        <h2>📿 Today's Mystery</h2>
+        <p style={{ textAlign: "center", marginBottom: "1rem" }}>
+          {mystery} Mysteries
+        </p>
+
+        <h2>🟡 Rosary Beads</h2>
+        <div className="beads">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div
+              key={index}
+              className={`bead ${index < currentBead ? "active" : ""}`}
+              onClick={() => handleBeadClick(index)}
+            ></div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: "center" }}>
+          <button onClick={resetBeads}>Reset</button>
+        </div>
+
+        <h2>🙏 Daily Prayers</h2>
+        <ul className="prayer-list">
+          <li>Our Father</li>
+          <li>Hail Mary</li>
+          <li>Glory Be</li>
+          <li>Apostles’ Creed</li>
+          <li>Fatima Prayer</li>
+        </ul>
+
+        <h2>📖 All Mysteries</h2>
+        {Object.entries(allMysteries).map(([key, list]) => (
+          <div key={key} className="accordion-item">
+            <div
+              className="accordion-header"
+              onClick={() => toggleAccordion(key)}
+            >
+              <h3>{key} Mysteries</h3>
+              <span>{expanded[key] ? "−" : "+"}</span>
+            </div>
+            {expanded[key] && (
+              <ul className="prayer-list accordion-body">
+                {list.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+
+        <div className="toggle-container">
+          <input
+            type="checkbox"
+            checked={darkMode}
+            onChange={() => setDarkMode(!darkMode)}
+          />
+          <label>🌙 Dark Mode</label>
+        </div>
       </div>
 
-      {/* ROSARY SECTION */}
-      {section === "rosary" && (
-        <>
-          <h3>Select Mystery:</h3>
-          <select
-            value={mystery}
-            onChange={(e) => {
-              setMystery(e.target.value);
-              handleReset();
-            }}
-          >
-            <option>Joyful</option>
-            <option>Sorrowful</option>
-            <option>Glorious</option>
-            <option>Luminous</option>
-          </select>
+      <footer>
+        ✝️ Built with devotion • Holy Rosary Meditation App
+      </footer>
+    </>
+  );
+}
 
-          <h2>{mystery} Mystery</h2>
-          <h3>Decade: {decade} / 5</h3>
-          <h3>Hail Mary: {count + 1} / 10</h3>
+/* ================= ROUTER ================= */
 
-          <p className="prayer-text">
-            {prayers[mystery][decade - 1]}
-          </p>
-
-          <button onClick={handlePray}>Pray Hail Mary</button>
-          <button onClick={handleReset} className="reset-btn">
-            Reset Rosary
-          </button>
-
-          {decade === 5 && count === 9 && (
-            <h2 className="complete">🎉 You completed the Rosary!</h2>
-          )}
-
-          <div className="progress-bar">
-            <div
-              className="progress-fill"
-              style={{ width: `${progressPercent}%` }}
-            />
-          </div>
-          <p>{progressPercent}% completed</p>
-        </>
-      )}
-
-      {/* DAILY PRAYERS */}
-      {section === "daily" && (
-        <>
-          <h2>Daily Prayers</h2>
-          <p>Our Father, who art in heaven, hallowed be thy name...</p>
-          <p>Hail Mary, full of grace, the Lord is with thee...</p>
-        </>
-      )}
-
-      {/* DIVINE MERCY */}
-      {section === "mercy" && (
-        <>
-          <h2>Divine Mercy Chaplet</h2>
-          <p>Eternal Father, I offer you the Body and Blood...</p>
-        </>
-      )}
-
-      {/* BIBLE */}
-      {section === "bible" && (
-        <>
-          <h2>Bible Passage</h2>
-          <p>John 3:16 — For God so loved the world...</p>
-        </>
-      )}
-    </div>
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/divine-mercy" element={<DivineMercy />} />
+    </Routes>
   );
 }
 
