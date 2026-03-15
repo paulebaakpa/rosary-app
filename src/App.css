@@ -14,7 +14,21 @@ body {
   border-radius: 50%;
   margin: 20px auto;
   display: block;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.nav button {
+  margin: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+}
+
+.nav button:hover {
+  background: #2563eb;
 }
 
 .buttons button {
@@ -44,18 +58,4 @@ body {
 .counter p {
   font-size: 30px;
   margin-top: 10px;
-}
-
-.nav button {
-  margin: 8px;
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  background: #3b82f6;
-  color: white;
-  cursor: pointer;
-}
-
-.nav button:hover {
-  background: #2563eb;
 }

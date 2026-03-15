@@ -1,7 +1,8 @@
-import { useState } from "react";
-import rosaryImage from "./assets/images-7.jpeg";
+import { useState, useEffect } from "react";
 import "./App.css";
+import rosaryImage from "./assets/images-7.jpeg";
 
+// Rosary Mysteries
 const mysteries = {
   Joyful: [
     "The Annunciation",
@@ -26,41 +27,64 @@ const mysteries = {
   ],
 };
 
-const fatimaPrayer = `
-O my Jesus, forgive us our sins,
-save us from the fires of hell,
-lead all souls to heaven,
-especially those in most need of Thy mercy.
-Amen.
-`;
-
-const divineMercy = `
-For the sake of His sorrowful Passion,
-have mercy on us and on the whole world.
-`;
-
-const dailyReading = {
-  title: "John 3:16",
-  text: "For God so loved the world that He gave His only Son, that whoever believes in Him should not perish but have eternal life."
+// Rosary Prayers
+const prayers = {
+  apostlesCreed: `I believe in God, the Father Almighty, Creator of heaven and earth…`,
+  ourFather: `Our Father, who art in heaven, hallowed be thy name…`,
+  hailMary: `Hail Mary, full of grace, the Lord is with thee…`,
+  gloryBe: `Glory be to the Father, and to the Son, and to the Holy Spirit…`,
+  fatima: `O my Jesus, forgive us our sins, save us from the fires of hell…`,
+  divineMercy: `For the sake of His sorrowful Passion, have mercy on us and on the whole world.`,
 };
 
 export default function App() {
-
   const [section, setSection] = useState("rosary");
   const [mystery, setMystery] = useState("Joyful");
-  const [count, setCount] = useState(0);
+  const [hailCount, setHailCount] = useState(0);
   const [mercyCount, setMercyCount] = useState(0);
+  const [dailyReading, setDailyReading] = useState({ title: "", text: "" });
+
+  // Fetch Daily Bible Reading (example: John 3:16)
+  useEffect(() => {
+    fetch("https://bible-api.com/john%203:16")
+      .then((res) => res.json())
+      .then((data) =>
+        setDailyReading({ title: data.reference, text: data.text })
+      )
+      .catch(() =>
+        setDailyReading({
+          title: "Daily Reading",
+          text: "Unable to fetch reading today.",
+        })
+      );
+  }, []);
+
+  // Divine Mercy 3PM Notification
+  useEffect(() => {
+    const now = new Date();
+    const threePM = new Date();
+    threePM.setHours(15, 0, 0, 0);
+    const delay = threePM.getTime() - now.getTime();
+
+    if (delay > 0 && "Notification" in window) {
+      setTimeout(() => {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            new Notification("🙏 Divine Mercy Reminder", {
+              body: "It’s 3 PM! Time to pray the Divine Mercy Chaplet.",
+            });
+          }
+        });
+      }, delay);
+    }
+  }, []);
 
   return (
     <div className="container">
-
       <h1>📿 Catholic Prayer Companion</h1>
 
-      <img
-        src="/src/assets/images-7.jpeg"
-        alt="Rosary"
-        className="rosary-image"
-      />
+      {/* Top Rosary Image */}
+      <img src={rosaryImage} alt="Holy Rosary" className="rosary-image" />
 
       {/* Navigation */}
       <div className="nav">
@@ -70,51 +94,47 @@ export default function App() {
         <button onClick={() => setSection("reading")}>Daily Reading</button>
       </div>
 
-     {/* ROSARY SECTION */}
-{section === "rosary" && (
-  <>
-    <img
-      src={rosaryImage}
-      alt="Holy Rosary"
-      className="rosary-image"
-    />
+      {/* ROSARY SECTION */}
+      {section === "rosary" && (
+        <>
+          <h2>Select Mystery</h2>
+          <div className="buttons">
+            {Object.keys(mysteries).map((m) => (
+              <button key={m} onClick={() => setMystery(m)}>
+                {m}
+              </button>
+            ))}
+          </div>
 
-    <h2>Select Mystery</h2>
+          <h3>{mystery} Mysteries</h3>
+          <ul>
+            {mysteries[mystery].map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
 
-    <div className="buttons">
-      {Object.keys(mysteries).map((m) => (
-        <button key={m} onClick={() => setMystery(m)}>
-          {m}
-        </button>
-      ))}
-    </div>
+          <h2>Prayers</h2>
+          <p><strong>Apostles Creed:</strong> {prayers.apostlesCreed}</p>
+          <p><strong>Our Father:</strong> {prayers.ourFather}</p>
+          <p><strong>Hail Mary:</strong> {prayers.hailMary}</p>
+          <p><strong>Glory Be:</strong> {prayers.gloryBe}</p>
+          <p><strong>Fatima Prayer:</strong> {prayers.fatima}</p>
 
-    <h3>{mystery} Mysteries</h3>
-
-    <ul>
-      {mysteries[mystery].map((item, index) => (
-        <li key={index}>{item}</li>
-      ))}
-    </ul>
-
-    <h2>Hail Mary Counter</h2>
-
-    <div className="counter">
-      <button onClick={() => setCount(count + 1)}>
-        Pray Hail Mary
-      </button>
-      <p>{count}</p>
-    </div>
-  </>
-)}
+          <h2>Hail Mary Counter</h2>
+          <div className="counter">
+            <button onClick={() => setHailCount(hailCount + 1)}>
+              Pray Hail Mary
+            </button>
+            <p>{hailCount}</p>
+          </div>
+        </>
+      )}
 
       {/* DIVINE MERCY */}
       {section === "divine" && (
         <>
           <h2>✝️ Divine Mercy Chaplet</h2>
-
-          <p>{divineMercy}</p>
-
+          <p>{prayers.divineMercy}</p>
           <div className="counter">
             <button onClick={() => setMercyCount(mercyCount + 1)}>
               Pray Chaplet
@@ -128,8 +148,7 @@ export default function App() {
       {section === "fatima" && (
         <>
           <h2>🌹 Our Lady of Fatima Prayer</h2>
-
-          <p>{fatimaPrayer}</p>
+          <p>{prayers.fatima}</p>
         </>
       )}
 
@@ -137,12 +156,10 @@ export default function App() {
       {section === "reading" && (
         <>
           <h2>📖 Daily Scripture</h2>
-
           <h3>{dailyReading.title}</h3>
           <p>{dailyReading.text}</p>
         </>
       )}
-
     </div>
   );
 }
