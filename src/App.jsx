@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import rosaryImage from "./assets/images-7.jpeg";
+import rosaryImage from "./assets/virginmary.jpeg";
+import joyful from "./assets/blackman.jpeg";
+import sorrowful from "./assets/Agony.jpeg";
+import glorious from "./assets/Amen.jpeg";
+import luminous from "./assets/bible.jpeg";
+import divineMercyImg from "./assets/images-7.jpeg";
+import fatimaImg from "./assets/fatima.jpeg";
+import bibleImg from "./assets/book.jpeg";
 
 // Rosary Mysteries
 const mysteries = {
@@ -86,13 +93,30 @@ export default function App() {
       {/* Top Rosary Image */}
       <img src={rosaryImage} alt="Holy Rosary" className="rosary-image" />
 
-      {/* Navigation */}
-      <div className="nav">
-        <button onClick={() => setSection("rosary")}>Rosary</button>
-        <button onClick={() => setSection("divine")}>Divine Mercy</button>
-        <button onClick={() => setSection("fatima")}>Fatima Prayer</button>
-        <button onClick={() => setSection("reading")}>Daily Reading</button>
-      </div>
+      {/* Prayer Sections */}
+    <div className="prayer-section">
+
+    <div className="card" onClick={() => setSection("rosary")}>
+    <img src={joyful} alt="Rosary Mysteries" />
+    <h2>Rosary</h2>
+    </div>
+
+    <div className="card" onClick={() => setSection("divine")}>
+    <img src={divineMercyImg} alt="Divine Mercy" />
+    <h2>Divine Mercy</h2>
+    </div>
+
+    <div className="card" onClick={() => setSection("fatima")}>
+    <img src={fatimaImg} alt="Fatima Prayer" />
+    <h2>Fatima Prayer</h2>
+    </div>
+
+    <div className="card" onClick={() => setSection("reading")}>
+    <img src={bibleImg} alt="Daily Readings" />
+    <h2>Daily Reading</h2>
+    </div>
+
+    </div>
 
       {/* ROSARY SECTION */}
       {section === "rosary" && (
