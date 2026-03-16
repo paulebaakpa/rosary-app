@@ -96,27 +96,29 @@ export default function App() {
       {/* Prayer Sections */}
     <div className="prayer-section">
 
-    <div className="card" onClick={() => setSection("rosary")}>
-    <img src={joyful} alt="Rosary Mysteries" />
+  <div className="card" onClick={() => setSection("rosary")}>
+    <img src={rosaryImage} alt="Rosary" />
     <h2>Rosary</h2>
-    </div>
+  </div>
 
-    <div className="card" onClick={() => setSection("divine")}>
-    <img src={divineMercyImg} alt="Divine Mercy" />
+  <div className="card" onClick={() => setSection("divine")}>
+    <img src={rosaryImage} alt="Divine Mercy" />
     <h2>Divine Mercy</h2>
-    </div>
+  </div>
 
-    <div className="card" onClick={() => setSection("fatima")}>
-    <img src={fatimaImg} alt="Fatima Prayer" />
+  <div className="card" onClick={() => setSection("fatima")}>
+    <img src={rosaryImage} alt="Fatima Prayer" />
     <h2>Fatima Prayer</h2>
-    </div>
+  </div>
 
-    <div className="card" onClick={() => setSection("reading")}>
-    <img src={bibleImg} alt="Daily Readings" />
+  <div className="card" onClick={() => setSection("reading")}>
+    <img src={rosaryImage} alt="Daily Reading" />
     <h2>Daily Reading</h2>
-    </div>
+  </div>
 
-    </div>
+</div>
+
+    
 
       {/* ROSARY SECTION */}
       {section === "rosary" && (
