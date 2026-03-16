@@ -93,31 +93,35 @@ export default function App() {
       {/* Top Rosary Image */}
       <img src={rosaryImage} alt="Holy Rosary" className="rosary-image" />
 
+
       {/* Prayer Sections */}
-    <div className="prayer-section">
 
-  <div className="card" onClick={() => setSection("rosary")}>
-    <img src={rosaryImage} alt="Rosary" />
-    <h2>Rosary</h2>
-  </div>
-
-  <div className="card" onClick={() => setSection("divine")}>
-    <img src={rosaryImage} alt="Divine Mercy" />
-    <h2>Divine Mercy</h2>
-  </div>
-
-  <div className="card" onClick={() => setSection("fatima")}>
-    <img src={rosaryImage} alt="Fatima Prayer" />
-    <h2>Fatima Prayer</h2>
-  </div>
-
-  <div className="card" onClick={() => setSection("reading")}>
-    <img src={rosaryImage} alt="Daily Reading" />
-    <h2>Daily Reading</h2>
-  </div>
-
+      <div className="cards">
+      <div className="prayer-card">
+  <img src={maryImg} alt="Virgin Mary" />
+  <h3>Rosary</h3>
 </div>
 
+<div className="prayer-card">
+  <img src={fatimaImg} alt="Fatima Prayer" />
+  <h3>Fatima Prayer</h3>
+</div>
+
+<div className="prayer-card">
+  <img src={bibleImg} alt="Daily Reading" />
+  <h3>Daily Reading</h3>
+</div>
+
+<div className="prayer-card">
+  <img src={mercyImg} alt="Divine Mercy" />
+  <h3>Divine Mercy</h3>
+</div>
+
+<div className="prayer-card">
+  <img src={agonyImg} alt="Agony Prayer" />
+  <h3>Agony Prayer</h3>
+</div>
+</div>
     
 
       {/* ROSARY SECTION */}

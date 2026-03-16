@@ -88,3 +88,23 @@ body {
   font-size:18px;
   color:#333;
 }
+
+.prayer-card {
+  width: 200px;
+  text-align: center;
+  margin: 15px;
+}
+
+.prayer-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
