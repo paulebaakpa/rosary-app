@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import rosaryImage from "./assets/virginmary.jpeg";
-import joyful from "./assets/blackman.jpeg";
-import sorrowful from "./assets/Agony.jpeg";
-import glorious from "./assets/Amen.jpeg";
-import luminous from "./assets/bible.jpeg";
-import divineMercyImg from "./assets/images-7.jpeg";
+
+import rosaryImage from "./assets/images-7.jpeg";
+import maryImg from "./assets/virginmary.jpeg";
 import fatimaImg from "./assets/fatima.jpeg";
-import bibleImg from "./assets/book.jpeg";
+import bibleImg from "./assets/bible.jpeg";
+import mercyImg from "./assets/Amen.jpeg";
+import agonyImg from "./assets/Agony.jpeg";
 
 // Rosary Mysteries
 const mysteries = {
@@ -44,6 +43,15 @@ const prayers = {
   divineMercy: `For the sake of His sorrowful Passion, have mercy on us and on the whole world.`,
 };
 
+// Prayer cards with section mapping
+const prayerCards = [
+  { name: "Rosary", img: maryImg, section: "rosary" },
+  { name: "Fatima Prayer", img: fatimaImg, section: "fatima" },
+  { name: "Daily Reading", img: bibleImg, section: "reading" },
+  { name: "Divine Mercy", img: mercyImg, section: "divine" },
+  { name: "Agony Prayer", img: agonyImg, section: "rosary" },
+];
+
 export default function App() {
   const [section, setSection] = useState("rosary");
   const [mystery, setMystery] = useState("Joyful");
@@ -51,7 +59,7 @@ export default function App() {
   const [mercyCount, setMercyCount] = useState(0);
   const [dailyReading, setDailyReading] = useState({ title: "", text: "" });
 
-  // Fetch Daily Bible Reading (example: John 3:16)
+  // Fetch Daily Bible Reading
   useEffect(() => {
     fetch("https://bible-api.com/john%203:16")
       .then((res) => res.json())
@@ -93,36 +101,19 @@ export default function App() {
       {/* Top Rosary Image */}
       <img src={rosaryImage} alt="Holy Rosary" className="rosary-image" />
 
-
-      {/* Prayer Sections */}
-
+      {/* Prayer Cards */}
       <div className="cards">
-      <div className="prayer-card">
-  <img src={maryImg} alt="Virgin Mary" />
-  <h3>Rosary</h3>
-</div>
-
-<div className="prayer-card">
-  <img src={fatimaImg} alt="Fatima Prayer" />
-  <h3>Fatima Prayer</h3>
-</div>
-
-<div className="prayer-card">
-  <img src={bibleImg} alt="Daily Reading" />
-  <h3>Daily Reading</h3>
-</div>
-
-<div className="prayer-card">
-  <img src={mercyImg} alt="Divine Mercy" />
-  <h3>Divine Mercy</h3>
-</div>
-
-<div className="prayer-card">
-  <img src={agonyImg} alt="Agony Prayer" />
-  <h3>Agony Prayer</h3>
-</div>
-</div>
-    
+        {prayerCards.map((card, index) => (
+          <div
+            key={index}
+            className={`prayer-card ${section === card.section ? "active" : ""}`}
+            onClick={() => setSection(card.section)}
+          >
+            <img src={card.img} alt={card.name} />
+            <h3>{card.name}</h3>
+          </div>
+        ))}
+      </div>
 
       {/* ROSARY SECTION */}
       {section === "rosary" && (
@@ -144,11 +135,21 @@ export default function App() {
           </ul>
 
           <h2>Prayers</h2>
-          <p><strong>Apostles Creed:</strong> {prayers.apostlesCreed}</p>
-          <p><strong>Our Father:</strong> {prayers.ourFather}</p>
-          <p><strong>Hail Mary:</strong> {prayers.hailMary}</p>
-          <p><strong>Glory Be:</strong> {prayers.gloryBe}</p>
-          <p><strong>Fatima Prayer:</strong> {prayers.fatima}</p>
+          <p>
+            <strong>Apostles Creed:</strong> {prayers.apostlesCreed}
+          </p>
+          <p>
+            <strong>Our Father:</strong> {prayers.ourFather}
+          </p>
+          <p>
+            <strong>Hail Mary:</strong> {prayers.hailMary}
+          </p>
+          <p>
+            <strong>Glory Be:</strong> {prayers.gloryBe}
+          </p>
+          <p>
+            <strong>Fatima Prayer:</strong> {prayers.fatima}
+          </p>
 
           <h2>Hail Mary Counter</h2>
           <div className="counter">
