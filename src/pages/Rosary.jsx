@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Rosary.css";
+
 import "../App.css"; // ✅ 
 
 export default function Rosary() {
