@@ -359,3 +359,84 @@ li p {
   height: 100%;
   border: none;
 }
+
+.fatima-container {
+  background: #fff;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.prayer-text {
+  font-style: italic;
+  margin: 15px 0;
+  line-height: 1.6;
+}
+
+.intention {
+  margin-bottom: 15px;
+}
+
+.intention select {
+  margin-left: 10px;
+  padding: 5px;
+}
+
+.audio-btn {
+  margin: 10px 0;
+  padding: 8px 15px;
+  border: none;
+  background: #4a6cf7;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.audio-btn:hover {
+  background: #3a56d4;
+}
+
+.reflection, .scripture, .action {
+  margin-top: 15px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.silence {
+  text-align: center;
+  margin-top: 15px;
+  color: #777;
+  font-style: italic;
+}
+
+.fatima-prayer-card {
+  background: #fff3f3;        /* soft rose color */
+  border: 2px solid #f28c8c;  /* rose-colored border */
+  border-radius: 15px;         /* rounded corners */
+  padding: 20px;
+  margin: 30px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  text-align: center;
+}
+
+.fatima-prayer-card h2 {
+  color: #d94f4f;
+  margin-bottom: 15px;
+}
+
+.fatima-prayer-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.prayer-rose {
+  width: 60px;      /* moderate size */
+  height: 60px;
+  display: block;
+  margin: 0 auto 10px auto; /* centered above the title */
+  border-radius: 50%;        /* optional circle shape */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* subtle depth */
+}

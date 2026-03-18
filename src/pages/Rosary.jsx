@@ -36,6 +36,7 @@ export default function Rosary() {
         </ul>
       </section>
 
+
       {/* Sorrowful */}
       <section className="mystery">
         <h2>Sorrowful Mysteries</h2>
@@ -62,23 +63,26 @@ export default function Rosary() {
         </ul>
       </section>
 
-      {/* Luminous */}
-      <section className="mystery">
-        <h2>Luminous Mysteries</h2>
-        <span className="day">Thursday</span>
-        <ul>
-          <li><strong>Baptism in the Jordan</strong><p>God reveals Jesus as His Son.</p></li>
-          <li><strong>Wedding at Cana</strong><p>Jesus performs His first miracle.</p></li>
-          <li><strong>Proclamation of the Kingdom</strong><p>Jesus calls us to repentance.</p></li>
-          <li><strong>The Transfiguration</strong><p>Jesus reveals His glory.</p></li>
-          <li><strong>Institution of the Eucharist</strong><p>Jesus gives His Body and Blood.</p></li>
-        </ul>
-      </section>
+      {/* Luminous Mysteries */}
+<section className="mystery">
+  <h2>Luminous Mysteries</h2>
+  <span className="day">Thursday</span>
+  <ul>
+    <li><strong>Baptism in the Jordan</strong><p>God reveals Jesus as His Son.</p></li>
+    <li><strong>Wedding at Cana</strong><p>Jesus performs His first miracle.</p></li>
+    <li><strong>Proclamation of the Kingdom</strong><p>Jesus calls us to repentance.</p></li>
+    <li><strong>The Transfiguration</strong><p>Jesus reveals His glory.</p></li>
+    <li><strong>Institution of the Eucharist</strong><p>Jesus gives His Body and Blood.</p></li>
+  </ul>
+</section>
 
-      <Link to="/">
-        <button className="back-btn">⬅ Back Home</button>
-      </Link>
+<FatimaPrayer />
 
+<Link to="/">
+  <button className="back-btn">⬅ Back Home</button>
+</Link>
+
+      
     </div>
   );
 }
