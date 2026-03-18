@@ -1,74 +1,79 @@
 import { Link } from "react-router-dom";
+import "./Rosary.css";
 
 export default function Rosary() {
   return (
     <div className="container">
 
-      <h2>📿 Holy Rosary</h2>
+      <h1 className="title">📿 Holy Rosary</h1>
+      <p className="intro">
+        The Rosary is a meditation on the life of Jesus and Mary.
+      </p>
 
-      <p>The Rosary is a meditation on the life of Jesus and Mary.</p>
-        <h2>Joyful Mystery of the Rosary</h2>
-        <ul>
-            <li>Monday & Saturday</li>
-       
-            <li>The Annunciation of the Lord to Mary</li>
-                <p>Mary is chosen to be the mother of Jesus.</p>
-            <li>The Visitation of Mary to Elizabeth</li>
-                <p>Elizabeth recognizes Mary as the mother of our Lord.</p>
-                <li>The Nativity of our Lord Jesus Christ</li>
-                <p>Jesus is born and laid in a manger.</p>
-                <li>The Presentation of our Lord</li>
-                <p>Jesus is presented in the Temple of Jerusalem.</p>
-                <li>Finding Jesus in the Temple at age 12</li>
-                <p>Jesus is found discussing God's laws in the temple.</p>
+      <div className="video-container">
+  <iframe
+    src="https://www.youtube.com/embed/2zE6cX0cV1E"
+    title="Holy Rosary Prayer"
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</div>
 
-        
-        </ul>
-        <h2>Sorrowful Mystery of the Rosary</h2>
+      {/* Joyful */}
+      <section className="mystery">
+        <h2>Joyful Mysteries</h2>
+        <span className="day">Monday & Saturday</span>
         <ul>
-          <li>Tuesday & Friday</li>
-          <li>The Agony of Jesus in the Garden</li>
-          <p>Jesus prays when confronted with the sins of the world.</p>
-          <li>The Scourging at the Pillar</li>
-          <p>Jesus is whipped before His execution.</p>
-          <li>Jesus is Crowned with Thorns</li>
-          <p>Jesus is mocked with a painful crown of thorns.</p>
-          <li>Jesus Carried the Cross</li>
-          <p>Jesus carries the weight of our sins to His crucifixion.</p>
-          <li>The Crucifixion of our Lord</li>
-          <p>Jesus Christ dies to save all mankind.</p>
-          
+          <li><strong>The Annunciation</strong><p>Mary is chosen to be the mother of Jesus.</p></li>
+          <li><strong>The Visitation</strong><p>Elizabeth recognizes Mary as the mother of our Lord.</p></li>
+          <li><strong>The Nativity</strong><p>Jesus is born and laid in a manger.</p></li>
+          <li><strong>The Presentation</strong><p>Jesus is presented in the Temple.</p></li>
+          <li><strong>Finding in the Temple</strong><p>Jesus is found discussing God's laws.</p></li>
         </ul>
-        <h2>Glorious Mystery of the Rosary</h2>
-        <ul>
-          <li>Wednesday & Sunday</li>
-          <li>The Resurrection of Jesus Christ</li>
-          <p>Jesus rises triumphant over death.</p>
-          <li>The Ascension of Jesus to Heaven</li>
-          <p>As Jesus ascends, He gives us a special task.</p>
-          <li>The Descent of the Holy Ghost</li>
-          <p>At Pentecost the Church is born.</p>
-          <li>The Assumption of Mary into Heaven</li>
-          <p>The Virgin Mary is gloriously assumed into heaven.</p>
-          <li>Mary is Crowned as Queen of Heaven and Earth</li>
-          <p>Mary is honored above all creatures.</p>
-        </ul>
+      </section>
 
-        <h2>Luminous Mystery of the Rosary</h2>
-        <ul>Thursday</ul>
-        <li>The Baptism in the Jordan</li>
-        <p>God proclaims Jesus is His Son.</p>
-        <li>The Wedding at Cana</li>
-        <p>Jesus performs a surprising miracle at a wedding.</p>
-        <li>The Proclamation of the Kingdom</li>
-        <p>Jesus calls us to do something important.</p>
-        <li>The Transfiguration</li>
-        <p>Jesus is gloriously transformed.</p>
-        <li>The Institution of the Eucharist</li>
-        <p>Jesus shares His Body and Blood for our salvation.</p>
+      {/* Sorrowful */}
+      <section className="mystery">
+        <h2>Sorrowful Mysteries</h2>
+        <span className="day">Tuesday & Friday</span>
+        <ul>
+          <li><strong>Agony in the Garden</strong><p>Jesus prays before His suffering.</p></li>
+          <li><strong>Scourging at the Pillar</strong><p>Jesus is whipped.</p></li>
+          <li><strong>Crowning with Thorns</strong><p>Jesus is mocked.</p></li>
+          <li><strong>Carrying the Cross</strong><p>Jesus carries our sins.</p></li>
+          <li><strong>The Crucifixion</strong><p>Jesus dies to save mankind.</p></li>
+        </ul>
+      </section>
+
+      {/* Glorious */}
+      <section className="mystery">
+        <h2>Glorious Mysteries</h2>
+        <span className="day">Wednesday & Sunday</span>
+        <ul>
+          <li><strong>The Resurrection</strong><p>Jesus rises from the dead.</p></li>
+          <li><strong>The Ascension</strong><p>Jesus returns to Heaven.</p></li>
+          <li><strong>Pentecost</strong><p>The Holy Spirit descends.</p></li>
+          <li><strong>The Assumption</strong><p>Mary is taken to Heaven.</p></li>
+          <li><strong>The Coronation</strong><p>Mary is crowned Queen.</p></li>
+        </ul>
+      </section>
+
+      {/* Luminous */}
+      <section className="mystery">
+        <h2>Luminous Mysteries</h2>
+        <span className="day">Thursday</span>
+        <ul>
+          <li><strong>Baptism in the Jordan</strong><p>God reveals Jesus as His Son.</p></li>
+          <li><strong>Wedding at Cana</strong><p>Jesus performs His first miracle.</p></li>
+          <li><strong>Proclamation of the Kingdom</strong><p>Jesus calls us to repentance.</p></li>
+          <li><strong>The Transfiguration</strong><p>Jesus reveals His glory.</p></li>
+          <li><strong>Institution of the Eucharist</strong><p>Jesus gives His Body and Blood.</p></li>
+        </ul>
+      </section>
 
       <Link to="/">
-        <button>⬅ Back Home</button>
+        <button className="back-btn">⬅ Back Home</button>
       </Link>
 
     </div>
