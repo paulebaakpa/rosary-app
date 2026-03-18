@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./FatimaPrayer.css";
+
 import rose from "../assets/rose.jpeg";
 
 export default function FatimaPrayer() {

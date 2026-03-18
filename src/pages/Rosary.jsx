@@ -1,29 +1,32 @@
+import React from "react";
 import { Link } from "react-router-dom";
-
-import "../App.css"; // ✅ 
+import "../App.css"; // Make sure the path is correct
 
 export default function Rosary() {
   return (
     <div className="container">
 
-      <h1 className="title">📿 Holy Rosary</h1>
-      <p className="intro">
-        The Rosary is a meditation on the life of Jesus and Mary.
-      </p>
+      {/* Hero Section */}
+      <div className="hero-container">
+        <div className="text">
+          <h1 className="title">📿 Holy Rosary</h1>
+          <p className="intro">
+            The Rosary is a meditation on the life of Jesus and Mary.
+          </p>
+        </div>
+      </div>
 
-      <div className="video-container">
- <iframe 
- width="560" 
- height="315" 
- src="https://www.youtube.com/embed/Hqd6bl_ezuI?si=rcPdSJGqcxFvtnul" 
- title="YouTube video player" 
- frameborder="0" 
- allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
- referrerpolicy="strict-origin-when-cross-origin" 
- allowfullscreen></iframe>
+     <div className="video-container">
+  <iframe
+    src="https://www.youtube.com/embed/EMFXQA4qXs0"
+    title="YouTube video"
+    frameBorder="0"
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    style={{ width: "100%", height: "400px" }}
+  ></iframe>
 </div>
-
-      {/* Joyful */}
+      {/* Joyful Mysteries */}
       <section className="mystery">
         <h2>Joyful Mysteries</h2>
         <span className="day">Monday & Saturday</span>
@@ -36,8 +39,7 @@ export default function Rosary() {
         </ul>
       </section>
 
-
-      {/* Sorrowful */}
+      {/* Sorrowful Mysteries */}
       <section className="mystery">
         <h2>Sorrowful Mysteries</h2>
         <span className="day">Tuesday & Friday</span>
@@ -50,7 +52,7 @@ export default function Rosary() {
         </ul>
       </section>
 
-      {/* Glorious */}
+      {/* Glorious Mysteries */}
       <section className="mystery">
         <h2>Glorious Mysteries</h2>
         <span className="day">Wednesday & Sunday</span>
@@ -64,25 +66,23 @@ export default function Rosary() {
       </section>
 
       {/* Luminous Mysteries */}
-<section className="mystery">
-  <h2>Luminous Mysteries</h2>
-  <span className="day">Thursday</span>
-  <ul>
-    <li><strong>Baptism in the Jordan</strong><p>God reveals Jesus as His Son.</p></li>
-    <li><strong>Wedding at Cana</strong><p>Jesus performs His first miracle.</p></li>
-    <li><strong>Proclamation of the Kingdom</strong><p>Jesus calls us to repentance.</p></li>
-    <li><strong>The Transfiguration</strong><p>Jesus reveals His glory.</p></li>
-    <li><strong>Institution of the Eucharist</strong><p>Jesus gives His Body and Blood.</p></li>
-  </ul>
-</section>
+      <section className="mystery">
+        <h2>Luminous Mysteries</h2>
+        <span className="day">Thursday</span>
+        <ul>
+          <li><strong>Baptism in the Jordan</strong><p>God reveals Jesus as His Son.</p></li>
+          <li><strong>Wedding at Cana</strong><p>Jesus performs His first miracle.</p></li>
+          <li><strong>Proclamation of the Kingdom</strong><p>Jesus calls us to repentance.</p></li>
+          <li><strong>The Transfiguration</strong><p>Jesus reveals His glory.</p></li>
+          <li><strong>Institution of the Eucharist</strong><p>Jesus gives His Body and Blood.</p></li>
+        </ul>
+      </section>
 
-<FatimaPrayer />
+      {/* Back Button */}
+      <Link to="/">
+        <button className="back-btn">⬅ Back Home</button>
+      </Link>
 
-<Link to="/">
-  <button className="back-btn">⬅ Back Home</button>
-</Link>
-
-      
     </div>
   );
 }
