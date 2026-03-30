@@ -42,6 +42,10 @@ export default function Home() {
           <h3>Agony Prayer</h3>
         </Link>
 
+        <Link to="/stations">
+          <button>✝️ Stations of the Cross</button>
+       </Link>
+
       </div>
 
     </div>
